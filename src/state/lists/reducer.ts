@@ -46,6 +46,17 @@ const initialState: ListsState = {
   selectedListUrl: undefined,
 }
 
+// Define an initialization function
+const initializeDefaultTokenList = () => {
+  // Fetch the default token list and assign it to the current property
+  fetchTokenList(DEFAULT_TOKEN_LIST_URL).then((tokenList) => {
+    initialState.byUrl[DEFAULT_TOKEN_LIST_URL].current = tokenList
+  })
+}
+
+// Call the initialization function
+initializeDefaultTokenList()
+
 export default createReducer(initialState, (builder) =>
   builder
     .addCase(fetchTokenList.pending, (state, { payload: { requestId, url } }) => {
