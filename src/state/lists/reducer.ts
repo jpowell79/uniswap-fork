@@ -29,23 +29,6 @@ const NEW_LIST_STATE: ListsState['byUrl'][string] = {
 
 type Mutable<T> = { -readonly [P in keyof T]: T[P] extends ReadonlyArray<infer U> ? U[] : T[P] }
 
-// const initialState: ListsState = {
-//   lastInitializedDefaultListOfLists: DEFAULT_LIST_OF_LISTS,
-//   byUrl: {
-//     ...DEFAULT_LIST_OF_LISTS.reduce<Mutable<ListsState['byUrl']>>((memo, listUrl) => {
-//       memo[listUrl] = NEW_LIST_STATE
-//       return memo
-//     }, {}),
-//     [DEFAULT_TOKEN_LIST_URL]: {
-//       error: null,
-//       current: UNISWAP_DEFAULT_LIST,
-//       loadingRequestId: null,
-//       pendingUpdate: null
-//     }
-//   },
-//   selectedListUrl: undefined
-// }
-
 const initialState: ListsState = {
   lastInitializedDefaultListOfLists: DEFAULT_LIST_OF_LISTS,
   byUrl: {
@@ -55,7 +38,7 @@ const initialState: ListsState = {
     }, {}),
     [DEFAULT_TOKEN_LIST_URL]: {
       error: null,
-      current: DEFAULT_TOKEN_LIST_URL, // Update the default list to DEFAULT_TOKEN_LIST_URL
+      current: null, // Assign null initially
       loadingRequestId: null,
       pendingUpdate: null,
     },
